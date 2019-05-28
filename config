@@ -1,6 +1,0 @@
-Host github.com
-    HostName	ssh.github.com
-    user	git
-    Port	443
-    ProxyCommand connect -H 133.192.24.104:8080 %h %p
-    IdentityFile ~/.ssh/id_rsa
