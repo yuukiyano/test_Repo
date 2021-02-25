@@ -1,0 +1,40 @@
+print("START!");
+//フォルダの指定
+cheackdir = "C:\\test";
+starttime = getTime();
+a= 1;
+
+filelist = getFileList(cheackdir);
+
+print("File-count-->",filelist.length);
+
+for(i=0;i<filelist.length-1;i++){
+	starttime1 = getTime();
+	if(File.exists(cheackdir + "\\" + filelist[i])== 1){
+		open(cheackdir + "\\" + filelist[i]);
+	
+		for(j=i + 1;j<filelist.length;j++){
+			if(File.exists(cheackdir + "\\" + filelist[j])== 1){
+
+				open(cheackdir + "\\" + filelist[j]);		
+				imageCalculator("Difference create", filelist[i],filelist[j]);
+				run("Measure");
+				
+				if(getResult("Max", 0) < 20){
+					File.delete(cheackdir + "\\" + filelist[j]);
+				}	
+
+				close(filelist[j]);
+				close("Result of*");
+				run("Clear Results");
+			}
+		}
+		close(filelist[i]);
+
+		print(a,"番目完了--->",getTime() - starttime1);
+		a++;
+	}
+}
+print("フルコンプリート--->",getTime() - starttime);
+
+print("END")
